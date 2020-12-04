@@ -7,7 +7,7 @@ import com.enigmatix.deprocrastinator.database.Task
 import com.enigmatix.deprocrastinator.databinding.TaskBinding
 
 class TaskAdapter : RecyclerView.Adapter<TaskHolder>() {
-    private var data = listOf<Task>()
+    var data = listOf<Task>()
     set(value) {
         field = value
         notifyDataSetChanged()

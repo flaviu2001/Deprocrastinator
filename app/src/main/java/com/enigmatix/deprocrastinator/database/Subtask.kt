@@ -15,5 +15,6 @@ data class Subtask (
     var description: String,
     var startDateTime: Date,
     var endDateTime: Date,
-    var importance: Int
+    var importance: Int,
+    var completed: Int
 )

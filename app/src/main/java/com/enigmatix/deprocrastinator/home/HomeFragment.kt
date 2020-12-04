@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.enigmatix.deprocrastinator.R
+import com.enigmatix.deprocrastinator.database.TaskDatabase
 import com.enigmatix.deprocrastinator.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
@@ -20,11 +21,14 @@ class HomeFragment : Fragment() {
     ): View {
         binding = FragmentHomeBinding.inflate(inflater)
         binding.lifecycleOwner = this
-        homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
+        homeViewModel = ViewModelProvider(this, HomeViewModelFactory(TaskDatabase.getInstance(requireContext()).taskDatabaseDao)).get(HomeViewModel::class.java)
         binding.viewModel = homeViewModel
         val adapter = TaskAdapter()
         binding.taskList.adapter = adapter
         setHasOptionsMenu(true)
+        homeViewModel.taskList.observe(viewLifecycleOwner){
+            adapter.data = it
+        }
         return binding.root
     }
 

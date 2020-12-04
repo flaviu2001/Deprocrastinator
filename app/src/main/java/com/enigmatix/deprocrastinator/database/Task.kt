@@ -9,5 +9,5 @@ data class Task (
         var id: Int = 0,
         var name: String,
         var description: String,
-        var color: Long
+        var color: Int
 )
