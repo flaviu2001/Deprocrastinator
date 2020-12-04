@@ -18,7 +18,9 @@ interface TaskDatabaseDao {
     @Delete
     suspend fun deleteSubtask(subtask: Subtask)
     @Query("select * from tasks")
-    suspend fun getTasks(): LiveData<List<Task>>
+    fun getTasks(): LiveData<List<Task>>
     @Query("select * from subtasks where taskId=:id")
-    suspend fun getSubtasks(id: Int): LiveData<List<Subtask>>
+    fun getSubtasks(id: Int): LiveData<List<Subtask>>
+    @Query("select * from subtasks where taskID=:id and endDateTime is not null order by endDateTime limit 1")
+    suspend fun getFirstDeadline(id: Int): Subtask?
 }
