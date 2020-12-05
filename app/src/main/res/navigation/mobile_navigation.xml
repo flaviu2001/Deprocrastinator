@@ -36,9 +36,7 @@
             app:destination="@id/nav_completed_subtasks" />
         <action
             android:id="@+id/action_nav_subtask_to_nav_edit_task"
-            app:destination="@id/nav_edit_task"
-            app:popUpTo="@id/nav_task"
-            app:popUpToInclusive="false" />
+            app:destination="@id/nav_edit_task" />
     </fragment>
     <fragment
         android:id="@+id/nav_add_subtask"

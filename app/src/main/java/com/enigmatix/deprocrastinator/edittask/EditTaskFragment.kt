@@ -57,6 +57,7 @@ class EditTaskFragment : Fragment() {
             }
             viewModel.update(taskId, binding.nameEdit.text.toString(), binding.descriptionEdit.text.toString(), itemColor)
             this.findNavController().navigateUp()
+            this.findNavController().navigateUp()
         }
         return binding.root
     }
