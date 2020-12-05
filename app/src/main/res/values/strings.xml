@@ -35,4 +35,9 @@
     <string name="subtask_error">You must fill all the fields</string>
     <string name="starting_format">Starting: %s</string>
     <string name="finishing_format">Finishing: %s</string>
+    <string name="completed">Completed</string>
+    <string name="edit_subtask">Edit Subtask</string>
+    <string name="delete_task">Delete Task</string>
+    <string name="save_subtask">Save subtask</string>
+    <string name="delete_subtask">Delete subtask</string>
 </resources>

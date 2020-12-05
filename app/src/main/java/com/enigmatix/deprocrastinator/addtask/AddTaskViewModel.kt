@@ -3,10 +3,7 @@ package com.enigmatix.deprocrastinator.addtask
 import androidx.lifecycle.ViewModel
 import com.enigmatix.deprocrastinator.database.Task
 import com.enigmatix.deprocrastinator.database.TaskDatabaseDao
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 class AddTaskViewModel(private val database: TaskDatabaseDao) : ViewModel() {
     private val viewModelJob = Job()
@@ -14,7 +11,9 @@ class AddTaskViewModel(private val database: TaskDatabaseDao) : ViewModel() {
 
     fun addTask(name: String, description: String, color: Int) {
         uiScope.launch {
-            database.insertTask(Task(name = name, description = description, color = color))
+            withContext(Dispatchers.IO) {
+                database.insertTask(Task(name = name, description = description, color = color))
+            }
         }
     }
 }

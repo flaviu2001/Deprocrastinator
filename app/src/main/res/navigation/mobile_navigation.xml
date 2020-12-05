@@ -28,6 +28,9 @@
         <action
             android:id="@+id/action_subtaskFragment_to_addSubtaskFragment"
             app:destination="@id/nav_add_subtask" />
+        <action
+            android:id="@+id/action_nav_subtask_to_editSubtaskFragment"
+            app:destination="@id/nav_edit_subtask" />
     </fragment>
     <fragment
         android:id="@+id/nav_add_subtask"
@@ -35,6 +38,14 @@
         android:label="@string/add_subtask" >
         <argument
             android:name="taskId"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_edit_subtask"
+        android:name="com.enigmatix.deprocrastinator.editsubtask.EditSubtaskFragment"
+        android:label="@string/edit_subtask" >
+        <argument
+            android:name="subtaskId"
             app:argType="integer" />
     </fragment>
 </navigation>

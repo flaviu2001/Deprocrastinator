@@ -1,15 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
             name="viewModel"
             type="com.enigmatix.deprocrastinator.editsubtask.EditSubtaskViewModel" />
     </data>
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".editsubtask.EditSubtaskFragment">
+
+        <EditText
+            android:id="@+id/descriptionEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:ems="10"
+            android:hint="@string/description"
+            android:importantForAutofill="no"
+            android:inputType="textMultiLine"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/importanceEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:focusable="false"
+            android:hint="@string/importance"
+            android:importantForAutofill="no"
+            android:inputType="none"
+            android:textIsSelectable="false"
+            app:layout_constraintStart_toStartOf="@+id/descriptionEdit"
+            app:layout_constraintTop_toBottomOf="@+id/descriptionEdit" />
+
+        <EditText
+            android:id="@+id/deadlineChoose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:focusable="false"
+            android:hint="@string/choose_deadline_type"
+            android:importantForAutofill="no"
+            android:inputType="none"
+            android:textIsSelectable="false"
+            app:layout_constraintStart_toStartOf="@+id/importanceEdit"
+            app:layout_constraintTop_toBottomOf="@+id/importanceEdit" />
+
+        <EditText
+            android:id="@+id/startEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:focusable="false"
+            android:hint="@string/start_time"
+            android:importantForAutofill="no"
+            android:inputType="none"
+            android:textIsSelectable="false"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="@+id/deadlineChoose"
+            app:layout_constraintTop_toBottomOf="@+id/deadlineChoose" />
+
+        <EditText
+            android:id="@+id/endEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:focusable="false"
+            android:hint="@string/end_time"
+            android:importantForAutofill="no"
+            android:inputType="none"
+            android:textIsSelectable="false"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="@+id/startEdit"
+            app:layout_constraintTop_toBottomOf="@+id/startEdit" />
+
+        <EditText
+            android:id="@+id/colorEdit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:focusable="false"
+            android:gravity="center"
+            android:importantForAutofill="no"
+            android:inputType="none"
+            android:text="@string/color"
+            android:textAllCaps="true"
+            android:textColor="@color/darker_yellow"
+            android:textIsSelectable="false"
+            android:textSize="21sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/descriptionEdit"
+            app:layout_constraintStart_toStartOf="@+id/descriptionEdit"
+            app:layout_constraintTop_toBottomOf="@+id/endEdit"
+            tools:ignore="LabelFor" />
+
+        <Button
+            android:id="@+id/completedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:text="@string/completed"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

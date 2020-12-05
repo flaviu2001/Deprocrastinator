@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.enigmatix.deprocrastinator.database.Subtask
 import com.enigmatix.deprocrastinator.databinding.SubtaskBinding
 
-class SubtaskAdapter : RecyclerView.Adapter<SubtaskHolder>() {
+class SubtaskAdapter(private val subtaskListener: SubtaskListener) : RecyclerView.Adapter<SubtaskHolder>() {
     var data = listOf<Subtask>()
     set(value) {
         field = value
@@ -14,7 +14,7 @@ class SubtaskAdapter : RecyclerView.Adapter<SubtaskHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SubtaskHolder {
-        return SubtaskHolder.from(parent)
+        return SubtaskHolder.from(parent, subtaskListener)
     }
 
     override fun onBindViewHolder(holder: SubtaskHolder, position: Int) {
@@ -26,16 +26,21 @@ class SubtaskAdapter : RecyclerView.Adapter<SubtaskHolder>() {
     }
 }
 
-class SubtaskHolder private constructor(private val binding: SubtaskBinding): RecyclerView.ViewHolder(binding.root){
+class SubtaskHolder private constructor(private val binding: SubtaskBinding, private val subtaskListener: SubtaskListener): RecyclerView.ViewHolder(binding.root){
     fun bind(subtask: Subtask) {
         binding.subtask = subtask
+        binding.clickListener = subtaskListener
     }
 
     companion object {
-        fun from(parent: ViewGroup): SubtaskHolder {
+        fun from(parent: ViewGroup, subtaskListener: SubtaskListener): SubtaskHolder {
             val layoutInflater = LayoutInflater.from(parent.context)
             val binding = SubtaskBinding.inflate(layoutInflater, parent, false)
-            return SubtaskHolder(binding)
+            return SubtaskHolder(binding, subtaskListener)
         }
     }
+}
+
+class SubtaskListener(val clickListener: (subtaskId: Int) -> Unit) {
+    fun onClick(subtask: Subtask) = clickListener(subtask.id)
 }

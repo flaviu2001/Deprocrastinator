@@ -26,7 +26,9 @@ class SubtaskFragment : Fragment() {
         viewModel = ViewModelProvider(this,
         SubtaskViewModelFactory(taskId, TaskDatabase.getInstance(requireContext()).taskDatabaseDao)).get(SubtaskViewModel::class.java)
         binding.viewModel = viewModel
-        val adapter = SubtaskAdapter()
+        val adapter = SubtaskAdapter(SubtaskListener { subtaskId ->
+            this.findNavController().navigate(SubtaskFragmentDirections.actionNavSubtaskToEditSubtaskFragment(subtaskId))
+        })
         binding.subtaskList.adapter = adapter
         viewModel.incompleteSubtasks.observe(viewLifecycleOwner){
             if (it.size < 2)
@@ -46,6 +48,11 @@ class SubtaskFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.nav_add_subtask) {
             this.findNavController().navigate(SubtaskFragmentDirections.actionSubtaskFragmentToAddSubtaskFragment(taskId))
+            return true
+        }
+        if (item.itemId == R.id.delete_task) {
+            viewModel.deleteTask()
+            this.findNavController().navigateUp()
             return true
         }
         return NavigationUI.onNavDestinationSelected(item, requireView().findNavController())

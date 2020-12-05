@@ -33,7 +33,7 @@ fun TextView.setNextDeadlineText(item: Task?) {
             }
             text = if (subtask == null)
                 context.getString(R.string.no_deadline)
-            else context.getString(R.string.yes_deadline).format(subtask!!.endDateTime)
+            else context.getString(R.string.yes_deadline).format(prettyTimeString(subtask!!.endDateTime))
         }
     }
 }
@@ -67,7 +67,10 @@ fun TextView.setStartDate(item: Subtask?) {
     item?.let {
         if (item.startDateTime == null)
             visibility = TextView.GONE
-        else text = context.getString(R.string.starting_format).format(prettyTimeString(item.startDateTime))
+        else {
+            visibility = TextView.VISIBLE
+            text = context.getString(R.string.starting_format).format(prettyTimeString(item.startDateTime))
+        }
     }
 }
 
@@ -76,7 +79,10 @@ fun TextView.setEndDate(item: Subtask?) {
     item?.let {
         if (item.endDateTime == null)
             visibility = TextView.GONE
-        else text = context.getString(R.string.finishing_format).format(prettyTimeString(item.endDateTime))
+        else {
+            visibility = TextView.VISIBLE
+            text = context.getString(R.string.finishing_format).format(prettyTimeString(item.endDateTime))
+        }
     }
 }
 
