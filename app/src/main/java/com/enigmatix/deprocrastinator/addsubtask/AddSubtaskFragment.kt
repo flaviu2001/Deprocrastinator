@@ -15,11 +15,11 @@ import com.enigmatix.deprocrastinator.DateTime
 import com.enigmatix.deprocrastinator.R
 import com.enigmatix.deprocrastinator.database.TaskDatabase
 import com.enigmatix.deprocrastinator.databinding.AddSubtaskFragmentBinding
+import com.enigmatix.deprocrastinator.prettyTimeString
 import com.google.android.material.snackbar.Snackbar
 import com.jaredrummler.android.colorpicker.ColorPickerDialog
 import com.jaredrummler.android.colorpicker.ColorPickerDialogListener
 import java.util.*
-
 
 class AddSubtaskFragment : Fragment() {
     private lateinit var binding: AddSubtaskFragmentBinding
@@ -104,7 +104,7 @@ class AddSubtaskFragment : Fragment() {
                     else {
                         start!!.let {
                             it.year = year
-                            it.month = monthOfYear
+                            it.month = monthOfYear+1
                             it.day = dayOfMonth
                         }
                     }
@@ -115,8 +115,7 @@ class AddSubtaskFragment : Fragment() {
                                 it.hour = hourOfDay
                                 it.minute = minute
                             }
-                            binding.startEdit.setText(requireContext().getString(R.string.datetime_format).format(
-                                start!!.year, start!!.month, start!!.day, start!!.hour, start!!.minute))
+                            binding.startEdit.setText(prettyTimeString(start!!))
                         }, c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE),true).show()
                 }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)
             ).show()
@@ -131,7 +130,7 @@ class AddSubtaskFragment : Fragment() {
                     else {
                         end!!.let {
                             it.year = year
-                            it.month = monthOfYear
+                            it.month = monthOfYear+1
                             it.day = dayOfMonth
                         }
                     }
@@ -142,8 +141,7 @@ class AddSubtaskFragment : Fragment() {
                                 it.hour = hourOfDay
                                 it.minute = minute
                             }
-                            binding.endEdit.setText(requireContext().getString(R.string.datetime_format).format(
-                                end!!.year, end!!.month, end!!.day, end!!.hour, end!!.minute))
+                            binding.endEdit.setText(prettyTimeString(end!!))
                         }, c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE),true).show()
                 }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)
             ).show()

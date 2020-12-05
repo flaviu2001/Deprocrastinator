@@ -20,6 +20,7 @@ import com.enigmatix.deprocrastinator.prettyTimeString
 import com.google.android.material.snackbar.Snackbar
 import com.jaredrummler.android.colorpicker.ColorPickerDialog
 import com.jaredrummler.android.colorpicker.ColorPickerDialogListener
+import kotlinx.android.synthetic.main.subtask.*
 import kotlinx.android.synthetic.main.task_fragment.view.*
 import java.util.*
 
@@ -59,14 +60,14 @@ class EditSubtaskFragment : Fragment() {
                     binding.deadlineChoose.setText(resources.getStringArray(R.array.schedules)[0])
                     binding.endEdit.visibility = EditText.VISIBLE
                     binding.endEdit.setText(prettyTimeString(it.endDateTime))
-                    end = DateTime(it.endDateTime!!.year, it.endDateTime!!.month, it.endDateTime!!.day, it.endDateTime!!.hours, it.endDateTime!!.minutes)
+                    end = DateTime(it.endDateTime!!.year+1900, it.endDateTime!!.month+1, it.endDateTime!!.date, it.endDateTime!!.hours, it.endDateTime!!.minutes)
                     case = 0
                 }
                 if (it.startDateTime != null) {
                     binding.deadlineChoose.setText(resources.getStringArray(R.array.schedules)[2])
                     binding.startEdit.visibility = EditText.VISIBLE
                     binding.startEdit.setText(prettyTimeString(it.startDateTime))
-                    start = DateTime(it.startDateTime!!.year, it.startDateTime!!.month, it.startDateTime!!.day, it.startDateTime!!.hours, it.startDateTime!!.minutes)
+                    start = DateTime(it.startDateTime!!.year+1900, it.startDateTime!!.month+1, it.startDateTime!!.date, it.startDateTime!!.hours, it.startDateTime!!.minutes)
                     case = 2
                 }
                 binding.colorEdit.setTextColor(it.color)
@@ -137,7 +138,7 @@ class EditSubtaskFragment : Fragment() {
                     else {
                         start!!.let {
                             it.year = year
-                            it.month = monthOfYear
+                            it.month = monthOfYear + 1
                             it.day = dayOfMonth
                         }
                     }
@@ -148,8 +149,7 @@ class EditSubtaskFragment : Fragment() {
                                 it.hour = hourOfDay
                                 it.minute = minute
                             }
-                            binding.startEdit.setText(requireContext().getString(R.string.datetime_format).format(
-                                start!!.year, start!!.month, start!!.day, start!!.hour, start!!.minute))
+                            binding.startEdit.setText(prettyTimeString(start!!))
                         }, c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE),true).show()
                 }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)
             ).show()
@@ -164,7 +164,7 @@ class EditSubtaskFragment : Fragment() {
                     else {
                         end!!.let {
                             it.year = year
-                            it.month = monthOfYear
+                            it.month = monthOfYear + 1
                             it.day = dayOfMonth
                         }
                     }
@@ -175,8 +175,7 @@ class EditSubtaskFragment : Fragment() {
                                 it.hour = hourOfDay
                                 it.minute = minute
                             }
-                            binding.endEdit.setText(requireContext().getString(R.string.datetime_format).format(
-                                end!!.year, end!!.month, end!!.day, end!!.hour, end!!.minute))
+                            binding.endEdit.setText(prettyTimeString(end!!))
                         }, c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE),true).show()
                 }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)
             ).show()
@@ -239,8 +238,15 @@ class EditSubtaskFragment : Fragment() {
                 return false
             }
             var startDate: Date? = null
-            if (start != null)
-                startDate = Date(start!!.year-1900, start!!.month-1, start!!.day, start!!.hour, start!!.minute)
+            if (start != null) {
+                startDate = Date(
+                    start!!.year - 1900,
+                    start!!.month - 1,
+                    start!!.day,
+                    start!!.hour,
+                    start!!.minute
+                )
+            }
             var endDate: Date? = null
             if (end != null)
                 endDate = Date(end!!.year-1900, end!!.month-1, end!!.day, end!!.hour, end!!.minute)

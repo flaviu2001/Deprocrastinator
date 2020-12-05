@@ -59,6 +59,10 @@ class SubtaskFragment : Fragment() {
             this.findNavController().navigate(SubtaskFragmentDirections.actionNavSubtaskToNavCompletedSubtasks(taskId))
             return true
         }
+        if (item.itemId == R.id.edit_task) {
+            this.findNavController().navigate(SubtaskFragmentDirections.actionNavSubtaskToNavEditTask(taskId))
+            return true
+        }
         return NavigationUI.onNavDestinationSelected(item, requireView().findNavController())
                 || super.onOptionsItemSelected(item)
     }

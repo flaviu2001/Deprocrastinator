@@ -12,7 +12,7 @@ class SubtaskViewModel(private val taskId: Int, private val database: TaskDataba
     fun deleteTask() {
         uiScope.launch {
             withContext(Dispatchers.IO) {
-                val task = database.getTask(taskId)
+                val task = database.getTaskNow(taskId)
                 if (task != null)
                     database.deleteTask(task)
             }

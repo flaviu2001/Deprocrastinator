@@ -19,5 +19,15 @@ fun prettyTimeString(date: Date?): String {
     var str2 = date.minutes.toString()
     if (str2.length == 1)
         str2 = "0$str2"
-    return "${date.day}-${date.month+1}-${date.year+1900} $str1:$str2"
+    return "${date.date}-${date.month+1}-${date.year+1900} $str1:$str2"
+}
+
+fun prettyTimeString(datetime: DateTime): String {
+    var str1 = datetime.hour.toString()
+    if (str1.length == 1)
+        str1 = "0$str1"
+    var str2 = datetime.minute.toString()
+    if (str2.length == 1)
+        str2 = "0$str2"
+    return "${datetime.day}-${datetime.month}-${datetime.year} $str1:$str2"
 }

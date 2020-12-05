@@ -30,7 +30,6 @@
         <item>No deadline</item>
         <item>Schedule</item>
     </string-array>
-    <string name="datetime_format">%s-%s-%s %s:%s</string>
     <string name="datetime_error">You must fill the dates</string>
     <string name="subtask_error">You must fill all the fields</string>
     <string name="starting_format">Starting: %s</string>
@@ -41,4 +40,6 @@
     <string name="save_subtask">Save subtask</string>
     <string name="delete_subtask">Delete subtask</string>
     <string name="completed_subtasks">Completed Subtasks</string>
+    <string name="save">Save</string>
+    <string name="edit_task">Edit Task</string>
 </resources>
