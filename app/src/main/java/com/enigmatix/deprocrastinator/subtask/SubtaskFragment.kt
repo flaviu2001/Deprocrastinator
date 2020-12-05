@@ -55,6 +55,10 @@ class SubtaskFragment : Fragment() {
             this.findNavController().navigateUp()
             return true
         }
+        if (item.itemId == R.id.nav_completed_subtasks) {
+            this.findNavController().navigate(SubtaskFragmentDirections.actionNavSubtaskToNavCompletedSubtasks(taskId))
+            return true
+        }
         return NavigationUI.onNavDestinationSelected(item, requireView().findNavController())
                 || super.onOptionsItemSelected(item)
     }

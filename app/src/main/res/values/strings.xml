@@ -40,4 +40,5 @@
     <string name="delete_task">Delete Task</string>
     <string name="save_subtask">Save subtask</string>
     <string name="delete_subtask">Delete subtask</string>
+    <string name="completed_subtasks">Completed Subtasks</string>
 </resources>

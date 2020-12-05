@@ -13,4 +13,8 @@
         android:icon="@drawable/baseline_delete_24"
         app:showAsAction="ifRoom"
         android:orderInCategory="1"/>
+    <item
+        android:title="@string/completed_subtasks"
+        android:id="@+id/nav_completed_subtasks"
+        android:orderInCategory="3"/>
 </menu>

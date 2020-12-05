@@ -25,10 +25,10 @@ interface TaskDatabaseDao {
     fun getTasks(): LiveData<List<Task>>
     @Query("select * from tasks where id=:id")
     suspend fun getTask(id: Int): Task?
-    @Query("select * from subtasks where taskId=:id")
-    fun getSubtasks(id: Int): LiveData<List<Subtask>>
     @Query("select * from subtasks where id=:id")
     fun getSubtask(id: Int): LiveData<Subtask>
+    @Query("select * from subtasks where taskId=:id and completed=1")
+    fun getCompletedSubtasks(id: Int): LiveData<List<Subtask>>
     @Query("select * from subtasks where taskId=:id and completed=0")
     fun getIncompleteSubtasks(id: Int): LiveData<List<Subtask>>
     @Query("select * from subtasks where taskID=:id and endDateTime is not null order by endDateTime limit 1")
