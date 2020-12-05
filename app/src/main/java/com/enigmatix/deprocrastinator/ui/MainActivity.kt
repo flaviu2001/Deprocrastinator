@@ -35,15 +35,19 @@ class MainActivity : AppCompatActivity() {
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
         val navController = (supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment).navController
-        appBarConfiguration = AppBarConfiguration(setOf(R.id.nav_task), drawerLayout)
+        appBarConfiguration = AppBarConfiguration(setOf(R.id.nav_task, R.id.nav_about_me), drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
         currentXp = ExperienceManipulator.getCurrentXP(applicationContext)
         currentXp.observe(this){
+            var xp = 0L
+            if (it != null)
+                xp = it.xp
             navView.getHeaderView(0).findViewById<TextView>(R.id.level).text = applicationContext.getString(
                 R.string.level_format
-            ).format(it.xp / 100)
-            navView.getHeaderView(0).findViewById<ProgressBar>(R.id.progressBar).progress = it.xp.toInt()%100
+            ).format(xp / 100)
+            navView.getHeaderView(0).findViewById<ProgressBar>(R.id.progressBar).progress = xp.toInt()%100
+
         }
         UserInfoManipulator.nameLiveData.observe(this){
             if (it != null)

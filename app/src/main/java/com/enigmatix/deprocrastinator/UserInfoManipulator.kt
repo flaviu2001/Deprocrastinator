@@ -17,11 +17,11 @@ object UserInfoManipulator {
     }
 
     fun setName(activity: Activity, name: String) {
-        nameLiveData.value = name
         val sharedPref = activity.getPreferences(Context.MODE_PRIVATE)
         with(sharedPref.edit()) {
             putString("name", name)
             apply()
         }
+        nameLiveData.value = name
     }
 }

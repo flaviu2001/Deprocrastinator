@@ -46,4 +46,7 @@
     <string name="level_format">Level: %d</string>
     <string name="display_name">Please insert your name. It will only be used to display inside the app.</string>
     <string name="apply">Apply</string>
+    <string name="progression">Progression</string>
+    <string name="set_name">Set name</string>
+    <string name="xp_format">Level: %d\nYou are %d xp points away from level up!</string>
 </resources>

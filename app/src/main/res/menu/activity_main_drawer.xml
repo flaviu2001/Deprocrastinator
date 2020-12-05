@@ -7,5 +7,8 @@
         <item
             android:id="@+id/nav_task"
             android:title="@string/tasks" />
+        <item
+            android:id="@+id/nav_about_me"
+            android:title="@string/progression"/>
     </group>
 </menu>
