@@ -41,4 +41,6 @@ interface TaskDatabaseDao {
     fun getLastXP(): LiveData<DbXP>
     @Query("select * from xp order by day desc limit 1")
     suspend fun getLastXPNow(): DbXP?
+    @Query("select * from xp order by day desc limit 10")
+    fun getAllXP(): LiveData<List<DbXP>>
 }

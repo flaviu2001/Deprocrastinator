@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.enigmatix.deprocrastinator.R
 import com.enigmatix.deprocrastinator.database.TaskDatabase
 import com.enigmatix.deprocrastinator.databinding.EditTaskFragmentBinding
+import com.enigmatix.deprocrastinator.hideKeyboard
 import com.google.android.material.snackbar.Snackbar
 import com.jaredrummler.android.colorpicker.ColorPickerDialog
 import com.jaredrummler.android.colorpicker.ColorPickerDialogListener
@@ -21,6 +22,7 @@ class EditTaskFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
+        hideKeyboard(requireActivity())
         binding = EditTaskFragmentBinding.inflate(inflater)
         binding.lifecycleOwner = this
         val taskId = EditTaskFragmentArgs.fromBundle(requireArguments()).taskId

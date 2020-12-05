@@ -13,13 +13,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
-import com.enigmatix.deprocrastinator.DateTime
-import com.enigmatix.deprocrastinator.ExperienceManipulator
-import com.enigmatix.deprocrastinator.R
+import com.enigmatix.deprocrastinator.*
 import com.enigmatix.deprocrastinator.database.Subtask
 import com.enigmatix.deprocrastinator.database.TaskDatabase
 import com.enigmatix.deprocrastinator.databinding.EditSubtaskFragmentBinding
-import com.enigmatix.deprocrastinator.prettyTimeString
 import com.google.android.material.snackbar.Snackbar
 import com.jaredrummler.android.colorpicker.ColorPickerDialog
 import com.jaredrummler.android.colorpicker.ColorPickerDialogListener
@@ -44,6 +41,7 @@ class EditSubtaskFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        hideKeyboard(requireActivity())
         binding = EditSubtaskFragmentBinding.inflate(inflater)
         val subtaskId = EditSubtaskFragmentArgs.fromBundle(requireArguments()).subtaskId
         viewModel = ViewModelProvider(this, EditSubtaskViewModelFactory(subtaskId, TaskDatabase.getInstance(requireContext()).taskDatabaseDao)).get(EditSubtaskViewModel::class.java)

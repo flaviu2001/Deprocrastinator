@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.enigmatix.deprocrastinator.R
 import com.enigmatix.deprocrastinator.database.TaskDatabase
 import com.enigmatix.deprocrastinator.databinding.AddTaskFragmentBinding
+import com.enigmatix.deprocrastinator.hideKeyboard
 import com.google.android.material.snackbar.Snackbar
 import com.jaredrummler.android.colorpicker.ColorPickerDialog
 import com.jaredrummler.android.colorpicker.ColorPickerDialogListener
@@ -23,6 +24,7 @@ class AddTaskFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        hideKeyboard(requireActivity())
         binding = AddTaskFragmentBinding.inflate(inflater)
         viewModel = ViewModelProvider(this, AddTaskViewModelFactory(TaskDatabase.getInstance(requireContext()).taskDatabaseDao)).get(AddTaskViewModel::class.java)
         binding.viewModel = viewModel

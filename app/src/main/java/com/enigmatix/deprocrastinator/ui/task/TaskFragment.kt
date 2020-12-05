@@ -10,6 +10,7 @@ import androidx.navigation.ui.NavigationUI
 import com.enigmatix.deprocrastinator.R
 import com.enigmatix.deprocrastinator.database.TaskDatabase
 import com.enigmatix.deprocrastinator.databinding.TaskFragmentBinding
+import com.enigmatix.deprocrastinator.hideKeyboard
 
 class TaskFragment : Fragment() {
     private lateinit var binding: TaskFragmentBinding
@@ -20,6 +21,7 @@ class TaskFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View {
+        hideKeyboard(requireActivity())
         binding = TaskFragmentBinding.inflate(inflater)
         binding.lifecycleOwner = this
         taskViewModel = ViewModelProvider(this, TaskViewModelFactory(TaskDatabase.getInstance(requireContext()).taskDatabaseDao)).get(TaskViewModel::class.java)

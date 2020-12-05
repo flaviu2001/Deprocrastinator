@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.enigmatix.deprocrastinator.ui.addsubtask
 
 import android.app.DatePickerDialog
@@ -15,6 +17,7 @@ import com.enigmatix.deprocrastinator.DateTime
 import com.enigmatix.deprocrastinator.R
 import com.enigmatix.deprocrastinator.database.TaskDatabase
 import com.enigmatix.deprocrastinator.databinding.AddSubtaskFragmentBinding
+import com.enigmatix.deprocrastinator.hideKeyboard
 import com.enigmatix.deprocrastinator.prettyTimeString
 import com.google.android.material.snackbar.Snackbar
 import com.jaredrummler.android.colorpicker.ColorPickerDialog
@@ -34,6 +37,7 @@ class AddSubtaskFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        hideKeyboard(requireActivity())
         binding = AddSubtaskFragmentBinding.inflate(inflater)
         viewModel = ViewModelProvider(this, AddSubtaskViewModelFactory(TaskDatabase.getInstance(requireContext()).taskDatabaseDao)).get(AddSubtaskViewModel::class.java)
         binding.viewModel = viewModel

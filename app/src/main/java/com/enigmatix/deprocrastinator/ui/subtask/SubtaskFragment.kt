@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.enigmatix.deprocrastinator.R
 import com.enigmatix.deprocrastinator.database.TaskDatabase
 import com.enigmatix.deprocrastinator.databinding.SubtaskFragmentBinding
+import com.enigmatix.deprocrastinator.hideKeyboard
 
 class SubtaskFragment : Fragment() {
     private lateinit var binding: SubtaskFragmentBinding
@@ -20,6 +21,7 @@ class SubtaskFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
+        hideKeyboard(requireActivity())
         binding = SubtaskFragmentBinding.inflate(inflater)
         binding.lifecycleOwner = this
         taskId = SubtaskFragmentArgs.fromBundle(requireArguments()).taskId

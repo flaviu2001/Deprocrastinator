@@ -68,4 +68,5 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version_kotlin_coroutines"
     // Color Picker
     implementation 'com.jaredrummler:colorpicker:1.1.0'
+    implementation 'com.github.lecho:hellocharts-library:1.5.8@aar'
 }

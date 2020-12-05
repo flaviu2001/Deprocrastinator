@@ -3,6 +3,7 @@
 package com.enigmatix.deprocrastinator
 
 import android.content.Context
+import android.util.Log
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.LiveData
 import com.enigmatix.deprocrastinator.database.DbXP
@@ -21,21 +22,25 @@ object ExperienceManipulator {
         return TaskDatabase.getInstance(context).taskDatabaseDao.getLastXP()
     }
 
+    fun getAllXP(context: Context): LiveData<List<DbXP>> {
+        return TaskDatabase.getInstance(context).taskDatabaseDao.getAllXP()
+    }
+
     fun addXP(activity: FragmentActivity, xp: Long) {
         val now = Date()
-        val today = Date(now.year, now.month, now.year)
+        val today = Date(now.year, now.month, now.date)
         val database = TaskDatabase.getInstance(activity.applicationContext).taskDatabaseDao
         val sharedPref = activity.getPreferences(Context.MODE_PRIVATE)
         var multiplier = sharedPref.getFloat("multiplier", 1f)
         var day = sharedPref.getLong("day", today.time)
-        if (kotlin.math.abs(day - Date(System.currentTimeMillis() - TimeUnit.DAYS.toMillis(1)).time) < TimeUnit.HOURS.toMillis(1))
+        val diff = kotlin.math.abs(day - today.time)
+        if (diff < TimeUnit.HOURS.toMillis(25) && diff > TimeUnit.HOURS.toMillis(23))
             multiplier += 0.2f
-        if (kotlin.math.abs(day - Date(System.currentTimeMillis() - TimeUnit.DAYS.toMillis(1)).time) > TimeUnit.HOURS.toMillis(25))
+        if (diff > TimeUnit.HOURS.toMillis(25))
             multiplier = 1f
         multiplier = min(multiplier, 5f)
-
-        day = today.time
         val addedXp = (multiplier*xp).roundToLong()
+        day = today.time
         with(sharedPref.edit()) {
             putFloat("multiplier", multiplier)
             putLong("day", day)

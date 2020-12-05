@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.enigmatix.deprocrastinator.database.TaskDatabase
 import com.enigmatix.deprocrastinator.databinding.CompletedSubtasksFragmentBinding
+import com.enigmatix.deprocrastinator.hideKeyboard
 import com.enigmatix.deprocrastinator.ui.subtask.SubtaskAdapter
 import com.enigmatix.deprocrastinator.ui.subtask.SubtaskListener
 
@@ -19,6 +20,7 @@ class CompletedSubtasksFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        hideKeyboard(requireActivity())
         binding = CompletedSubtasksFragmentBinding.inflate(inflater)
         val taskId = CompletedSubtasksFragmentArgs.fromBundle(requireArguments()).taskId
         viewModel = ViewModelProvider(this, CompletedSubtasksViewModelFactory(taskId, TaskDatabase.getInstance(requireContext()).taskDatabaseDao)).get(CompletedSubtasksViewModel::class.java)
