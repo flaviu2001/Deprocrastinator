@@ -2,7 +2,6 @@ package com.enigmatix.deprocrastinator.completedsubtasks
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.enigmatix.deprocrastinator.addtask.AddTaskViewModel
 import com.enigmatix.deprocrastinator.database.TaskDatabaseDao
 
 class CompletedSubtasksViewModelFactory (
