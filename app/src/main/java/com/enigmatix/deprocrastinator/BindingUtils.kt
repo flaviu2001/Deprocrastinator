@@ -41,6 +41,48 @@ fun TextView.setNextDeadlineText(item: Task?) {
 @BindingAdapter("customBackgroundColor")
 fun androidx.cardview.widget.CardView.setCustomBackgroundColor(item: Task?) {
     item?.let {
-        setCardBackgroundColor(item.color.toInt())
+        setCardBackgroundColor(item.color)
+    }
+}
+
+@BindingAdapter("description")
+fun TextView.setDescription(item: Subtask?) {
+    item?.let {
+        text = item.description
+    }
+}
+
+@BindingAdapter("importance")
+fun TextView.setImportance(item: Subtask?) {
+    item?.let {
+        var newText = context.resources.getStringArray(R.array.importances)[it.importance]
+        if (item.completed == 1)
+            newText += " (completed)"
+        text = newText
+    }
+}
+
+@BindingAdapter("startDate")
+fun TextView.setStartDate(item: Subtask?) {
+    item?.let {
+        if (item.startDateTime == null)
+            visibility = TextView.GONE
+        else text = context.getString(R.string.starting_format).format(prettyTimeString(item.startDateTime))
+    }
+}
+
+@BindingAdapter("endDate")
+fun TextView.setEndDate(item: Subtask?) {
+    item?.let {
+        if (item.endDateTime == null)
+            visibility = TextView.GONE
+        else text = context.getString(R.string.finishing_format).format(prettyTimeString(item.endDateTime))
+    }
+}
+
+@BindingAdapter("customBackgroundColor")
+fun androidx.cardview.widget.CardView.setCustomBackgroundColor(item: Subtask?) {
+    item?.let {
+        setCardBackgroundColor(item.color)
     }
 }

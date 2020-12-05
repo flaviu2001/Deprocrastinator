@@ -2,16 +2,39 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/nav_task">
 
     <fragment
-        android:id="@+id/nav_home"
-        android:name="com.enigmatix.deprocrastinator.home.HomeFragment"
-        android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/nav_task"
+        android:name="com.enigmatix.deprocrastinator.task.TaskFragment"
+        android:label="@string/tasks"
+        tools:layout="@layout/task_fragment" >
+        <action
+            android:id="@+id/action_nav_home_to_subtaskFragment"
+            app:destination="@id/nav_subtask" />
+    </fragment>
     <fragment
         android:id="@+id/nav_add_task"
         android:name="com.enigmatix.deprocrastinator.addtask.AddTaskFragment"
         android:label="@string/add_task"
         tools:layout="@layout/add_task_fragment" />
+    <fragment
+        android:id="@+id/nav_subtask"
+        android:name="com.enigmatix.deprocrastinator.subtask.SubtaskFragment"
+        android:label="@string/subtasks" >
+        <argument
+            android:name="taskId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_subtaskFragment_to_addSubtaskFragment"
+            app:destination="@id/nav_add_subtask" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_add_subtask"
+        android:name="com.enigmatix.deprocrastinator.addsubtask.AddSubtaskFragment"
+        android:label="@string/add_subtask" >
+        <argument
+            android:name="taskId"
+            app:argType="integer" />
+    </fragment>
 </navigation>

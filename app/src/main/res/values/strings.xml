@@ -3,7 +3,6 @@
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="menu_home">Home</string>
     <string name="no_deadline">No deadline yet!</string>
     <string name="yes_deadline">First deadline: %s</string>
     <string name="add">Add</string>
@@ -12,4 +11,28 @@
     <string name="description">Description:</string>
     <string name="color">Color</string>
     <string name="empty_error">The name and description cannot be empty</string>
+    <string name="subtasks">Subtasks</string>
+    <string name="add_subtask">Add Subtask</string>
+    <string name="tasks">Tasks</string>
+    <string name="importance">Importance:</string>
+    <string name="choose_deadline_type">Choose deadline type:</string>
+    <string name="start_time">Start time:</string>
+    <string name="end_time">End time:</string>
+    <string-array name="importances">
+        <item>Unimportant</item>
+        <item>Somewhat important</item>
+        <item>Important</item>
+        <item>Very important</item>
+        <item>Urgent</item>
+    </string-array>
+    <string-array name="schedules">
+        <item>Fixed deadline</item>
+        <item>No deadline</item>
+        <item>Schedule</item>
+    </string-array>
+    <string name="datetime_format">%s-%s-%s %s:%s</string>
+    <string name="datetime_error">You must fill the dates</string>
+    <string name="subtask_error">You must fill all the fields</string>
+    <string name="starting_format">Starting: %s</string>
+    <string name="finishing_format">Finishing: %s</string>
 </resources>

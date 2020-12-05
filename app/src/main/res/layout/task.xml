@@ -6,6 +6,9 @@
         <variable
             name="task"
             type="com.enigmatix.deprocrastinator.database.Task" />
+        <variable
+            name="clickListener"
+            type="com.enigmatix.deprocrastinator.task.TaskListener" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -18,6 +21,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
+        android:onClick="@{() -> clickListener.onClick(task)}"
         tools:cardBackgroundColor="#FFA000">
 
         <androidx.constraintlayout.widget.ConstraintLayout

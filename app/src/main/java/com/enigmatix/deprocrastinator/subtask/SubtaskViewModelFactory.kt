@@ -1,17 +1,17 @@
-package com.enigmatix.deprocrastinator.home
+package com.enigmatix.deprocrastinator.subtask
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.enigmatix.deprocrastinator.addtask.AddTaskViewModel
 import com.enigmatix.deprocrastinator.database.TaskDatabaseDao
 
-class HomeViewModelFactory (
+class SubtaskViewModelFactory (
+    private val id: Int,
     private val dataSource: TaskDatabaseDao
 ) : ViewModelProvider.Factory {
     @Suppress("unchecked_cast")
     override fun <T: ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(HomeViewModel::class.java)) {
-            return HomeViewModel(dataSource) as T
+        if (modelClass.isAssignableFrom(SubtaskViewModel::class.java)) {
+            return SubtaskViewModel(id, dataSource) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

@@ -24,10 +24,9 @@ class AddTaskFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = AddTaskFragmentBinding.inflate(inflater)
-        binding.lifecycleOwner = this
         viewModel = ViewModelProvider(this, AddTaskViewModelFactory(TaskDatabase.getInstance(requireContext()).taskDatabaseDao)).get(AddTaskViewModel::class.java)
         binding.viewModel = viewModel
-        itemColor = requireContext().getColor(R.color.yellow_500)
+        itemColor = requireContext().getColor(R.color.darker_yellow)
         binding.colorEdit.setOnClickListener{
             val colorPickerDialog = ColorPickerDialog.newBuilder()
                 .setDialogType(ColorPickerDialog.TYPE_PRESETS)

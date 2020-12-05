@@ -3,18 +3,19 @@
     <data>
         <variable
             name="viewModel"
-            type="com.enigmatix.deprocrastinator.home.HomeViewModel" />
+            type="com.enigmatix.deprocrastinator.subtask.SubtaskViewModel" />
     </data>
-
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".home.HomeFragment">
+        tools:context=".subtask.SubtaskFragment">
+
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/taskList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+            android:id="@+id/subtaskList"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

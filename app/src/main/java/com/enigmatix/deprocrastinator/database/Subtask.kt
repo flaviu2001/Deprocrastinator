@@ -13,8 +13,9 @@ data class Subtask (
     @ForeignKey(onDelete = CASCADE, entity = Task::class, parentColumns = ["id"], childColumns = ["taskId"])
     var taskId: Int,
     var description: String,
-    var startDateTime: Date,
-    var endDateTime: Date,
+    var startDateTime: Date?,
+    var endDateTime: Date?,
     var importance: Int,
-    var completed: Int
+    var completed: Int,
+    var color: Int
 )
