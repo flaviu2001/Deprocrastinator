@@ -239,17 +239,24 @@ class EditSubtaskFragment : Fragment() {
             }
             var startDate: Date? = null
             if (start != null) {
-                startDate = Date(
-                    start!!.year - 1900,
-                    start!!.month - 1,
-                    start!!.day,
-                    start!!.hour,
-                    start!!.minute
-                )
+                startDate = Date(start!!.year - 1900, start!!.month - 1, start!!.day, start!!.hour, start!!.minute)
+                if (startDate < Date()) {
+                    Snackbar.make(requireView(), requireContext().getString(R.string.time_in_past_error), Snackbar.LENGTH_SHORT).show()
+                    return false
+                }
             }
             var endDate: Date? = null
-            if (end != null)
-                endDate = Date(end!!.year-1900, end!!.month-1, end!!.day, end!!.hour, end!!.minute)
+            if (end != null) {
+                endDate = Date(end!!.year - 1900, end!!.month - 1, end!!.day, end!!.hour, end!!.minute)
+                if (endDate < Date()) {
+                    Snackbar.make(requireView(), requireContext().getString(R.string.time_in_past_error), Snackbar.LENGTH_SHORT).show()
+                    return false
+                }
+            }
+            if (startDate != null && endDate != null && startDate > endDate) {
+                Snackbar.make(requireView(), requireContext().getString(R.string.start_more_end_error), Snackbar.LENGTH_SHORT).show()
+                return false
+            }
             viewModel.update(taskId, binding.descriptionEdit.text.toString(), startDate, endDate, importance, itemColor, completed)
             this.findNavController().navigateUp()
             return true
