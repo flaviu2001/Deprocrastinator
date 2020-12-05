@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 
-@Database(entities = [Task::class, Subtask::class, XP::class], version = 1, exportSchema = false)
+@Database(entities = [Task::class, Subtask::class, DbXP::class], version = 1, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class TaskDatabase: RoomDatabase() {
     abstract val taskDatabaseDao: TaskDatabaseDao

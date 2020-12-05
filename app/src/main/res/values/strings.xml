@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">Deprocrastinator</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="no_deadline">No deadline yet!</string>
     <string name="yes_deadline">First deadline: %s</string>
@@ -44,4 +42,8 @@
     <string name="edit_task">Edit Task</string>
     <string name="start_more_end_error">You must select a starting time before the finishing time</string>
     <string name="time_in_past_error">You must select dates in the future</string>
+    <string name="next_level">Next level:</string>
+    <string name="level_format">Level: %d</string>
+    <string name="display_name">Please insert your name. It will only be used to display inside the app.</string>
+    <string name="apply">Apply</string>
 </resources>

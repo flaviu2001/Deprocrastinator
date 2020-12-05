@@ -8,7 +8,7 @@
             type="com.enigmatix.deprocrastinator.database.Task" />
         <variable
             name="clickListener"
-            type="com.enigmatix.deprocrastinator.task.TaskListener" />
+            type="com.enigmatix.deprocrastinator.ui.task.TaskListener" />
     </data>
 
     <androidx.cardview.widget.CardView

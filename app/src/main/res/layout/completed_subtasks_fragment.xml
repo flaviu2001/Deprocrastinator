@@ -3,7 +3,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.enigmatix.deprocrastinator.completedsubtasks.CompletedSubtasksViewModel" />
+            type="com.enigmatix.deprocrastinator.ui.completedsubtasks.CompletedSubtasksViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"

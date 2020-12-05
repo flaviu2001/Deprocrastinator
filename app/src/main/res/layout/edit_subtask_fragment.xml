@@ -5,13 +5,13 @@
     <data>
         <variable
             name="viewModel"
-            type="com.enigmatix.deprocrastinator.editsubtask.EditSubtaskViewModel" />
+            type="com.enigmatix.deprocrastinator.ui.editsubtask.EditSubtaskViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".editsubtask.EditSubtaskFragment">
+        tools:context=".ui.editsubtask.EditSubtaskFragment">
 
         <EditText
             android:id="@+id/descriptionEdit"

@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/nav_task"
-        android:name="com.enigmatix.deprocrastinator.task.TaskFragment"
+        android:name="com.enigmatix.deprocrastinator.ui.task.TaskFragment"
         android:label="@string/tasks"
         tools:layout="@layout/task_fragment" >
         <action
@@ -15,12 +15,12 @@
     </fragment>
     <fragment
         android:id="@+id/nav_add_task"
-        android:name="com.enigmatix.deprocrastinator.addtask.AddTaskFragment"
+        android:name="com.enigmatix.deprocrastinator.ui.addtask.AddTaskFragment"
         android:label="@string/add_task"
         tools:layout="@layout/add_task_fragment" />
     <fragment
         android:id="@+id/nav_subtask"
-        android:name="com.enigmatix.deprocrastinator.subtask.SubtaskFragment"
+        android:name="com.enigmatix.deprocrastinator.ui.subtask.SubtaskFragment"
         android:label="@string/subtasks" >
         <argument
             android:name="taskId"
@@ -40,7 +40,7 @@
     </fragment>
     <fragment
         android:id="@+id/nav_add_subtask"
-        android:name="com.enigmatix.deprocrastinator.addsubtask.AddSubtaskFragment"
+        android:name="com.enigmatix.deprocrastinator.ui.addsubtask.AddSubtaskFragment"
         android:label="@string/add_subtask" >
         <argument
             android:name="taskId"
@@ -48,7 +48,7 @@
     </fragment>
     <fragment
         android:id="@+id/nav_edit_subtask"
-        android:name="com.enigmatix.deprocrastinator.editsubtask.EditSubtaskFragment"
+        android:name="com.enigmatix.deprocrastinator.ui.editsubtask.EditSubtaskFragment"
         android:label="@string/edit_subtask" >
         <argument
             android:name="subtaskId"
@@ -56,7 +56,7 @@
     </fragment>
     <fragment
         android:id="@+id/nav_completed_subtasks"
-        android:name="com.enigmatix.deprocrastinator.completedsubtasks.CompletedSubtasksFragment"
+        android:name="com.enigmatix.deprocrastinator.ui.completedsubtasks.CompletedSubtasksFragment"
         android:label="@string/completed_subtasks" >
         <argument
             android:name="taskId"
@@ -64,7 +64,7 @@
     </fragment>
     <fragment
         android:id="@+id/nav_edit_task"
-        android:name="com.enigmatix.deprocrastinator.edittask.EditTaskFragment"
+        android:name="com.enigmatix.deprocrastinator.ui.edittask.EditTaskFragment"
         android:label="@string/edit_task"
         tools:layout="@layout/edit_task_fragment" >
         <argument
