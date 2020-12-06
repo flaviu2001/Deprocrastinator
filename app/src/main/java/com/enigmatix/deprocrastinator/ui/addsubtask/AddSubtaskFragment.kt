@@ -13,12 +13,9 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.enigmatix.deprocrastinator.DateTime
-import com.enigmatix.deprocrastinator.R
+import com.enigmatix.deprocrastinator.*
 import com.enigmatix.deprocrastinator.database.TaskDatabase
 import com.enigmatix.deprocrastinator.databinding.AddSubtaskFragmentBinding
-import com.enigmatix.deprocrastinator.hideKeyboard
-import com.enigmatix.deprocrastinator.prettyTimeString
 import com.google.android.material.snackbar.Snackbar
 import com.jaredrummler.android.colorpicker.ColorPickerDialog
 import com.jaredrummler.android.colorpicker.ColorPickerDialogListener
@@ -29,9 +26,11 @@ class AddSubtaskFragment : Fragment() {
     private lateinit var viewModel: AddSubtaskViewModel
     private var start: DateTime? = null
     private var end: DateTime? = null
+    private var notification: DateTime? = null
     private var case = -1
     private var itemColor = 0
     private var importance = 0
+    private var notificationId = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -75,14 +74,17 @@ class AddSubtaskFragment : Fragment() {
                             0 -> {
                                 binding.startEdit.visibility = EditText.GONE
                                 binding.endEdit.visibility = EditText.VISIBLE
+                                binding.notificationEdit.visibility = EditText.VISIBLE
                             }
                             1 -> {
                                 binding.startEdit.visibility = EditText.GONE
                                 binding.endEdit.visibility = EditText.GONE
+                                binding.notificationEdit.visibility = EditText.GONE
                             }
                             else -> {
                                 binding.startEdit.visibility = EditText.VISIBLE
                                 binding.endEdit.visibility = EditText.VISIBLE
+                                binding.notificationEdit.visibility = EditText.VISIBLE
                             }
                         }
                         binding.startEdit.text.clear()
@@ -150,6 +152,32 @@ class AddSubtaskFragment : Fragment() {
                 }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)
             ).show()
         }
+        binding.notificationEdit.setOnClickListener {
+            val calendar = Calendar.getInstance()
+            DatePickerDialog(
+                requireContext(),
+                { _, year, monthOfYear, dayOfMonth ->
+                    if (notification == null)
+                        notification = DateTime(year, monthOfYear + 1, dayOfMonth, 0, 0)
+                    else {
+                        notification!!.let {
+                            it.year = year
+                            it.month = monthOfYear+1
+                            it.day = dayOfMonth
+                        }
+                    }
+                    val c = Calendar.getInstance()
+                    TimePickerDialog(
+                        requireContext(), { _, hourOfDay, minute ->
+                            notification!!.let {
+                                it.hour = hourOfDay
+                                it.minute = minute
+                            }
+                            binding.notificationEdit.setText(prettyTimeString(notification!!))
+                        }, c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE),true).show()
+                }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)
+            ).show()
+        }
         binding.addButton.setOnClickListener{
             when(case) {
                 -1 -> {
@@ -197,7 +225,20 @@ class AddSubtaskFragment : Fragment() {
                 Snackbar.make(requireView(), requireContext().getString(R.string.start_more_end_error), Snackbar.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-            viewModel.addTask(taskId, binding.descriptionEdit.text.toString(), startDate, endDate, importance, itemColor)
+            if (notification != null) {
+                val notificationDate = Date(notification!!.year - 1900, notification!!.month - 1, notification!!.day, notification!!.hour, notification!!.minute)
+                if (notificationDate < Date()) {
+                    Snackbar.make(requireView(), requireContext().getString(R.string.notification_error2), Snackbar.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
+                if (endDate != null && notificationDate > endDate) {
+                    Snackbar.make(requireView(), requireContext().getString(R.string.notification_error), Snackbar.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
+                notificationId = NotificationIdManipulator.generateId(requireActivity())
+                scheduleNotification(requireActivity(), taskId, binding.descriptionEdit.text.toString(), notificationId, notificationDate)
+            }
+            viewModel.addSubtask(taskId, binding.descriptionEdit.text.toString(), startDate, endDate, importance, itemColor, notificationId)
             this.findNavController().navigateUp()
         }
         binding.colorEdit.setOnClickListener{

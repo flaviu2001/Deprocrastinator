@@ -85,6 +85,21 @@
             app:layout_constraintTop_toBottomOf="@+id/startEdit" />
 
         <EditText
+            android:id="@+id/notificationEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:hint="@string/reminder_time"
+            android:textIsSelectable="false"
+            android:inputType="none"
+            android:focusable="false"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="@+id/startEdit"
+            app:layout_constraintTop_toBottomOf="@+id/endEdit"
+            android:importantForAutofill="no" />
+
+        <EditText
             android:id="@+id/colorEdit"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -101,7 +116,7 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@+id/descriptionEdit"
             app:layout_constraintStart_toStartOf="@+id/descriptionEdit"
-            app:layout_constraintTop_toBottomOf="@+id/endEdit"
+            app:layout_constraintTop_toBottomOf="@+id/notificationEdit"
             tools:ignore="LabelFor" />
 
         <Button

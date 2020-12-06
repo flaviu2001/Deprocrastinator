@@ -11,7 +11,7 @@ class EditSubtaskViewModel(id: Int, private val database: TaskDatabaseDao) : Vie
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
     val subtask = database.getSubtask(id)
 
-    fun update(taskId: Int, description: String, start: Date?, end: Date?, importance: Int, color: Int, completed: Int) {
+    fun update(taskId: Int, description: String, start: Date?, end: Date?, importance: Int, color: Int, completed: Int, notificationId: Int) {
         uiScope.launch {
             withContext(Dispatchers.IO) {
                 database.updateSubtask(Subtask(
@@ -22,7 +22,8 @@ class EditSubtaskViewModel(id: Int, private val database: TaskDatabaseDao) : Vie
                     endDateTime= end,
                     importance=importance,
                     color=color,
-                    completed = completed
+                    completed = completed,
+                    notificationId = notificationId
                 ))
             }
         }

@@ -17,5 +17,6 @@ data class Subtask (
     var endDateTime: Date?,
     var importance: Int,
     var completed: Int,
-    var color: Int
+    var color: Int,
+    var notificationId: Int
 )
