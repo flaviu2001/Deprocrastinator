@@ -83,7 +83,7 @@ fun scheduleNotification(
             notificationIntent.putExtra("id", id)
             val broadcast = PendingIntent.getBroadcast(
                 activity.applicationContext,
-                100,
+                id,
                 notificationIntent,
                 PendingIntent.FLAG_UPDATE_CURRENT
             )
