@@ -234,7 +234,7 @@ class EditSubtaskFragment : Fragment() {
         binding.completedButton.setOnClickListener{
             viewModel.update(subtask.taskId, subtask.description, subtask.startDateTime, subtask.endDateTime, subtask.importance, subtask.color, 1, notificationId)
             ExperienceManipulator.addXP(requireActivity(), 10)
-            scheduleNotification(requireActivity(), taskId, binding.descriptionEdit.text.toString(), notificationId, null)
+            scheduleNotification(requireActivity(), taskId, binding.descriptionEdit.text.toString(), importance, notificationId, null)
             this.findNavController().navigateUp()
         }
         setHasOptionsMenu(true)
@@ -304,8 +304,8 @@ class EditSubtaskFragment : Fragment() {
                     Snackbar.make(requireView(), requireContext().getString(R.string.notification_error), Snackbar.LENGTH_SHORT).show()
                     return false
                 }
-                scheduleNotification(requireActivity(), taskId, binding.descriptionEdit.text.toString(), notificationId, notificationDate)
-            }else scheduleNotification(requireActivity(), taskId, binding.descriptionEdit.text.toString(), notificationId, null)
+                scheduleNotification(requireActivity(), taskId, binding.descriptionEdit.text.toString(), importance, notificationId, notificationDate)
+            }else scheduleNotification(requireActivity(), taskId, binding.descriptionEdit.text.toString(), importance, notificationId, null)
             viewModel.update(taskId, binding.descriptionEdit.text.toString(), startDate, endDate, importance, itemColor, completed, notificationId)
             this.findNavController().navigateUp()
             return true

@@ -1,6 +1,8 @@
 package com.enigmatix.deprocrastinator.notification
 
-import android.app.*
+import android.app.Notification
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -15,6 +17,7 @@ class AlarmReceiver : BroadcastReceiver() {
         val builder = Notification.Builder(context, CHANNEL_ID)
         val notification: Notification = builder.setContentTitle(title)
             .setContentText(description)
+            .setStyle(Notification.BigTextStyle().bigText(description))
             .setTicker("You got a subtask to take care of!")
             .setSmallIcon(R.drawable.icon)
             .build()

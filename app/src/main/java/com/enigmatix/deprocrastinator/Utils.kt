@@ -62,6 +62,7 @@ fun scheduleNotification(
     activity: Activity,
     taskId: Int,
     description: String,
+    importance: Int,
     id: Int,
     date: Date?
 ) {
@@ -78,7 +79,7 @@ fun scheduleNotification(
             }
             val title = TaskDatabase.getInstance(activity).taskDatabaseDao.getTaskNow(taskId)!!.name
             notificationIntent.putExtra("title", title)
-            notificationIntent.putExtra("description", description)
+            notificationIntent.putExtra("description", "$description (${activity.resources.getStringArray(R.array.importances)[importance]})")
             notificationIntent.putExtra("id", id)
             val broadcast = PendingIntent.getBroadcast(
                 activity.applicationContext,

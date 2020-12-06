@@ -236,7 +236,7 @@ class AddSubtaskFragment : Fragment() {
                     return@setOnClickListener
                 }
                 notificationId = NotificationIdManipulator.generateId(requireActivity())
-                scheduleNotification(requireActivity(), taskId, binding.descriptionEdit.text.toString(), notificationId, notificationDate)
+                scheduleNotification(requireActivity(), taskId, binding.descriptionEdit.text.toString(), importance, notificationId, notificationDate)
             }
             viewModel.addSubtask(taskId, binding.descriptionEdit.text.toString(), startDate, endDate, importance, itemColor, notificationId)
             this.findNavController().navigateUp()
