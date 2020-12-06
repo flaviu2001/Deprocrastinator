@@ -3,7 +3,6 @@
 package com.enigmatix.deprocrastinator
 
 import android.content.Context
-import android.util.Log
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.LiveData
 import com.enigmatix.deprocrastinator.database.DbXP

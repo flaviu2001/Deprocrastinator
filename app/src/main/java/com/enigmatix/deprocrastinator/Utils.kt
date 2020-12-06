@@ -8,13 +8,11 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import com.enigmatix.deprocrastinator.database.TaskDatabase
 import com.enigmatix.deprocrastinator.notification.AlarmReceiver
 import kotlinx.coroutines.*
 import java.util.*
-import java.util.concurrent.TimeUnit
 
 data class DateTime(
     var year: Int,
